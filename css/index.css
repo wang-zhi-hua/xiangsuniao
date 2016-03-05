@@ -1,13 +1,17 @@
 #canvas{
+	position: fixed;
+	left: 37%;
+	top:6%;
 	border: 1px solid #000;
 	background: url(../image/2.jpg) ;
 	background-size: cover;
+
 	 
 }
 #btn{
 	position: absolute;
-	top:30%;
-	left: 15%;
-	margin-left: -90px;
-	margin-top: 40px;
+	top:42%;
+	left: 45%;
+	
+	z-index: 3
 }
