@@ -45,6 +45,7 @@ window.onload=function  () {
         	}
         
         //管道左移
+        var vs;
         for(var i=0;i< guandaos.length;i++){
         	var z=guandaos[i];
         	z.top.x-=3;
@@ -53,9 +54,9 @@ window.onload=function  () {
         	ctx.drawImage(img2,z.top.x,z.top.y,z.top.w,z.top.h);
             ctx.drawImage(img3,z.bottom.x,z.bottom.y,z.bottom.w,z.bottom.h);
         	if(recvsrec(bird,z.top)||recvsrec(bird,z.bottom)){
+        		vs=true;
         		
-        		btn.style.display='block';
-        		return;
+        		
         	}
         	if(z.top.x<=-z.top.w){
         		z.top.x=500;
@@ -65,15 +66,19 @@ window.onload=function  () {
         		z.bottom.h=568-z.top.h-160;
         		z.bottom.y=z.top.h+160;
         	}
+        	if(vs){
+        		btn2.style.display="block";
+			return;
+        	}
         	
         }
 //判断超界
 		if(bird.y>568-40){
 			ctx.fillRect(140,568,bird.w,bird.h);
-			btn.style.display='block';
+			
 		}else if(bird.y<=0){
 			ctx.fillRect(140,0,bird.w,bird.h);
-			btn.style.display='block';
+			btn2.style.display='block';
 		}else{
 			window.requestAnimationFrame(draw);
 		}
@@ -86,11 +91,16 @@ window.onload=function  () {
 		a=1;
 	}
 	
-	requestAnimationFrame(draw);
+	
 
-    var btn=document.querySelector("#btn");
-    btn.onclick=function(){
-    	btn.style.display='none';
+    var btn2=document.querySelector("#btn2");
+    var btn1=document.querySelector("#btn1");
+    btn1.onclick=function(){
+		btn1.style.display="none";
+		requestAnimationFrame(draw);
+	}
+    btn2.onclick=function(){
+    	btn1.style.display='none';
     	window.location.reload();
     }
     // 检测矩形之间的碰撞
